@@ -9,11 +9,13 @@
 
 let latitude;
 let longitude;
+let myCity;
+let myState;
 
 const locationStatus = document.getElementById("location-status");
-const myLatitude = document.getElementById("my-latitude");
-const myLongitude = document.getElementById("my-longitude");
-const myCity = document.getElementById("my-city");
+const displayLatitude = document.getElementById("my-latitude");
+const displayLongitude = document.getElementById("my-longitude");
+const displayCity = document.getElementById("my-city");
 
 
 //! GET COORDINATES FUNCTION
@@ -28,6 +30,7 @@ const findMe = () => {
         (position) => {
           locationStatus.textContent = "Success";
           const { latitude, longitude } = position.coords;
+          console.log(position.coords);
           resolve({ latitude, longitude });
         },
         (err) => {
@@ -42,20 +45,43 @@ const findMe = () => {
 //! DISPLAY COORDINATES
 async function displayCoords() {
   try {
-    const coords = await findMe(); // Wait for geolocation result
+    const coords = await findMe(); // Wait for geolocation result from findMe function
     latitude = coords.latitude;
     longitude = coords.longitude;
 
     console.log("Latitude:", latitude);
     console.log("Longitude:", longitude);
 
-    // Optional: Display in your HTML elements
-    myLatitude.textContent = latitude
-    myLongitude.textContent = longitude
+    // Display
+    displayLatitude.textContent = latitude
+    displayLongitude.textContent = longitude
   } catch (error) {
     console.error("Geolocation error:", error.message);
   }
 }
 
+//! GET LOCATION METADATA (using coordinates) /points/{latitude},{longitude}  -> Returns metadata about a given latitude/longitude point
+//? await displayCoords for latitude, longitude? --> fetch weather api metadata using this 
+async function getLocationMetadata() {
+  try {
+    const coords = await findMe(); // Wait for geolocation result from findMe function
+    latitude = coords.latitude;
+    longitude = coords.longitude;
+    let metadataURL = `https://api.weather.gov/points/${latitude},${longitude}`;
+    await fetch(metadataURL)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        myCity = data.properties.relativeLocation.properties.city;
+        myState = data.properties.relativeLocation.properties.state;
+        console.log(myCity);
+      })
+
+  } catch (error) {
+    console.log("Weather API error: ", error.message);
+  }
+}
+
 
 displayCoords();
+getLocationMetadata();
