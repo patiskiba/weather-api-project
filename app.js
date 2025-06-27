@@ -74,13 +74,16 @@ async function getLocationMetadata() {
         console.log(data);
         myCity = data.properties.relativeLocation.properties.city;
         myState = data.properties.relativeLocation.properties.state;
-        console.log(myCity);
+        console.log(myCity, myState);
       })
+      .catch(error => {
+        console.log("Could not fetch weather API data: ", error)
+      });
 
   } catch (error) {
     console.log("Weather API error: ", error.message);
   }
-}
+};
 
 
 displayCoords();
