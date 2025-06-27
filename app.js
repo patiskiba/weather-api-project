@@ -16,6 +16,7 @@ const locationStatus = document.getElementById("location-status");
 const displayLatitude = document.getElementById("my-latitude");
 const displayLongitude = document.getElementById("my-longitude");
 const displayCity = document.getElementById("my-city");
+const displayState = document.getElementById("my-state");
 
 
 //! GET COORDINATES FUNCTION
@@ -85,6 +86,13 @@ async function getLocationMetadata() {
   }
 };
 
+//! DISPLAY LOCATION METADATA
+async function displayLocationMetadata() {
+  await getLocationMetadata();
+  displayCity.textContent = myCity;
+  displayState.textContent = myState;
+}
+
 
 displayCoords();
-getLocationMetadata();
+displayLocationMetadata();
