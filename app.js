@@ -97,7 +97,8 @@ async function getWeatherData() {
     await fetch(forecastEndpoint)
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        let forecastObjects = data.properties.periods;
+        console.log(forecastObjects);
       })
     
   } catch (error) {
