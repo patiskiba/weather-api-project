@@ -11,6 +11,7 @@ let latitude;
 let longitude;
 let myCity;
 let myState;
+let pointData;
 
 const locationStatus = document.getElementById("location-status");
 const displayLatitude = document.getElementById("my-latitude");
@@ -62,7 +63,6 @@ async function displayCoords() {
 }
 
 //! GET LOCATION METADATA (using coordinates) /points/{latitude},{longitude}  -> Returns metadata about a given latitude/longitude point
-//? await displayCoords for latitude, longitude? --> fetch weather api metadata using this 
 async function getLocationMetadata() {
   try {
     const coords = await findMe(); // Wait for geolocation result from findMe function
@@ -73,6 +73,8 @@ async function getLocationMetadata() {
       .then(res => res.json())
       .then(data => {
         console.log(data);
+        forecastEndpoint = data.properties.forecast;
+        console.log("forecast data found at: ", forecastEndpoint);
         myCity = data.properties.relativeLocation.properties.city;
         myState = data.properties.relativeLocation.properties.state;
         console.log(myCity, myState);
@@ -86,6 +88,23 @@ async function getLocationMetadata() {
   }
 };
 
+//! GET WEATHER DATA 
+//? required endpoint URL from getLocationMetadata
+//? endpoint URL matches this format: /gridpoints/{wfo}/{x},{y}/forecast 
+async function getWeatherData() {
+  try {
+    await getLocationMetadata();
+    await fetch(forecastEndpoint)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+      })
+    
+  } catch (error) {
+    console.log("Weather API error: ", error.message);
+  }
+}
+
 //! DISPLAY LOCATION METADATA
 async function displayLocationMetadata() {
   await getLocationMetadata();
@@ -95,4 +114,6 @@ async function displayLocationMetadata() {
 
 
 displayCoords();
+getLocationMetadata();
 displayLocationMetadata();
+getWeatherData();
