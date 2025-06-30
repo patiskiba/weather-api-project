@@ -113,8 +113,17 @@ async function displayLocationMetadata() {
   displayState.textContent = myState;
 }
 
+//! DISPLAY WEATHER DATA
+async function displayWeatherData() {
+  const weatherData = await getWeatherData();
+  // Today's weather information always at index 0
+  let todaysForecastObject = weatherData[0];
+  console.log(todaysForecastObject);
+  // Rest of week's information
+}
 
 displayCoords();
 getLocationMetadata();
 displayLocationMetadata();
 getWeatherData();
+displayWeatherData();
