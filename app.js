@@ -94,36 +94,34 @@ async function getLocationMetadata() {
 async function getWeatherData() {
   try {
     await getLocationMetadata();
-    await fetch(forecastEndpoint)
-      .then(res => res.json())
-      .then(data => {
-        let forecastObjects = data.properties.periods;
-        console.log(forecastObjects);
-      })
-    
+    const response = await fetch(forecastEndpoint);
+    const data = await response.json();
+    const forecastObjects = data.properties.periods;
+    console.log(forecastObjects);
+    return forecastObjects;
   } catch (error) {
-    console.log("Weather API error: ", error.message);
+    console.log("Weather API error: ", error,message)
   }
-}
+};
 
 //! DISPLAY LOCATION METADATA
 async function displayLocationMetadata() {
   await getLocationMetadata();
   displayCity.textContent = myCity;
   displayState.textContent = myState;
-}
+};
 
 //! DISPLAY WEATHER DATA
 async function displayWeatherData() {
-  const weatherData = await getWeatherData();
+  let weatherData = await getWeatherData();
   // Today's weather information always at index 0
-  let todaysForecastObject = weatherData[0];
-  console.log(todaysForecastObject);
+  let todaysForecast = weatherData[0];
+  console.log(todaysForecast);
   // Rest of week's information
-}
+  // Display:
+};
 
 displayCoords();
-getLocationMetadata();
+
 displayLocationMetadata();
-getWeatherData();
 displayWeatherData();
