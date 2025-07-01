@@ -116,11 +116,13 @@ async function displayWeatherData() {
   let weatherData = await getWeatherData();
   // Today's weather information always at index 0
   let todaysForecast = weatherData[0];
-  console.log(todaysForecast);
-  // Rest of week's information
+  console.log("Today's data: ", todaysForecast);
+  // Week's information
+  let weeksForecast = [];
   for (let i = 2; i < weatherData.length; i+=2) {
-    console.log(i);
+    weeksForecast.push(weatherData[i]);
   }
+  console.log("Week's data: ", weeksForecast);
   // Display:
 };
 
