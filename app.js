@@ -118,6 +118,9 @@ async function displayWeatherData() {
   let todaysForecast = weatherData[0];
   console.log(todaysForecast);
   // Rest of week's information
+  for (let i = 2; i < weatherData.length; i+=2) {
+    console.log(i);
+  }
   // Display:
 };
 
