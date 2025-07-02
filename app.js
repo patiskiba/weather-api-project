@@ -2,10 +2,7 @@
 //  /points/{latitude},{longitude}  -> Returns metadata about a given latitude/longitude point
 // /gridpoints/{wfo}/{x},{y}/forecast   -> Returns a textual forecast for a 2.5km grid area
 
-//TODO  Display current location info using geolocation API
-//TODO  Display current location's (current) weather forecast
-//TODO  Display current location's (week) weather forecast
-//TODO  Take user location
+
 
 let latitude;
 let longitude;
@@ -19,6 +16,12 @@ const displayLongitude = document.getElementById("my-longitude");
 const displayCity = document.getElementById("my-city");
 const displayState = document.getElementById("my-state");
 
+//! Today section DOM
+const todayName = document.getElementById("today-name");
+const todayIcon = document.getElementById("today-icon");
+const todayTempNum = document.getElementById("today-temp-num");
+const todayTempUnit = document.getElementById("today-temp-unit");
+const todayShortForecast = document.getElementById("today-short-forecase");
 
 //! GET COORDINATES FUNCTION
 //! need to wrap the geolocation call in a Promise so we can use await with it in displayCoords().
@@ -124,6 +127,8 @@ async function displayWeatherData() {
   }
   console.log("Week's data: ", weeksForecast);
   // Display:
+  //? each day: name, icon, temperature, temperatureUnit, shortForecast, 
+
 };
 
 displayCoords();
