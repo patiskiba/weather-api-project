@@ -18,10 +18,10 @@ const displayState = document.getElementById("my-state");
 
 //! Today section DOM
 const todayName = document.getElementById("today-name");
-const todayIcon = document.getElementById("today-icon");
+const todayIcon = document.getElementById("today-icon-img");
 const todayTempNum = document.getElementById("today-temp-num");
 const todayTempUnit = document.getElementById("today-temp-unit");
-const todayShortForecast = document.getElementById("today-short-forecase");
+const todayShortForecast = document.getElementById("today-short-forecast");
 
 //! GET COORDINATES FUNCTION
 //! need to wrap the geolocation call in a Promise so we can use await with it in displayCoords().
@@ -128,7 +128,11 @@ async function displayWeatherData() {
   console.log("Week's data: ", weeksForecast);
   // Display:
   //? each day: name, icon, temperature, temperatureUnit, shortForecast, 
-
+  todayName.textContent = todaysForecast.name;
+  todayIcon.src = todaysForecast.icon;
+  todayTempNum.textContent = todaysForecast.temperature;
+  todayTempUnit.textContent = todaysForecast.temperatureUnit;
+  todayShortForecast.textContent = todaysForecast.shortForecast;
 };
 
 displayCoords();
