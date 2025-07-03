@@ -23,6 +23,9 @@ const todayTempNum = document.getElementById("today-temp-num");
 const todayTempUnit = document.getElementById("today-temp-unit");
 const todayShortForecast = document.getElementById("today-short-forecast");
 
+//! Week section DOM
+
+
 //! GET COORDINATES FUNCTION
 //! need to wrap the geolocation call in a Promise so we can use await with it in displayCoords().
 const findMe = () => {
