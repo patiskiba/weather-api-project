@@ -1,5 +1,50 @@
+
+main {
+    background-color: #bcc9d3;
+}
+
+/* Today section */
 #today-icon-img {
     height: 10rem;
     width: 10rem;
     border-radius: 8px;
+}
+
+/* Future section */
+#week-section {
+    width: 50%;
+}
+
+.weekFutureDay {
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 3px 10px 20px #797391;
+    border-radius: 10px;
+    border: 1px solid white;
+    background-color: #c9d1d4;
+}
+
+.futureDayName {
+    width: 6rem;
+    font-weight: 700;
+}
+
+.futureDayIconImg {
+    height: 8rem;
+    width: 8rem;
+    border-radius: 8px;
+}
+
+.futureDayShortForecast {
+    width: 6rem;
+    font-style: italic;
+}
+
+@media (max-width: 890px) {
+  #week-section {
+    width: 100%;
+  }
 }

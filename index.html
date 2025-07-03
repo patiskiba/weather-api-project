@@ -10,25 +10,25 @@
 
 </head>
 <body>
-    <header>
+    <header class="text-center">
         <h2>Forecast</h2>
         <h5>Status: <span id="location-status">Pending</span></h5>
         <!-- My coordinates -->
         <h5>Latitude: <span id="my-latitude">x</span></h5>
         <h5>Longitude: <span id="my-longitude">x</span></h5>
-        <h1><span id="my-city">City</span>, <span id="my-state">State</span></h1>
+        <h1 class="text-6xl mt-10 mb-10"><span id="my-city">City</span>, <span id="my-state">State</span></h1>
     </header>
 
-    <main>
-        <section id="today-section">
-            <h2 id="today-name">x</h2>
+    <main class="flex flex-col items-center">
+        <section id="today-section" class="flex flex-col text-center mb-12">
+            <h2 id="today-name" class="text-5xl mt-5 mb-5">x</h2>
             <div id="today-icon-container">
                 <img src="" id="today-icon-img" alt="">
             </div>
-            <h3 id="today-temp-container"><span id="today-temp-num">90</span>°<span id="today-temp-unit">F</span></h3>
-            <p id="today-short-forecast">Lorem ipsum dolor sit amet.</p>
+            <h3 id="today-temp-container" class="text-4xl mt-5 mb-5"><span id="today-temp-num">90</span>°<span id="today-temp-unit">F</span></h3>
+            <p id="today-short-forecast" class="text-3xl">Lorem ipsum dolor sit amet.</p>
         </section>
-        <section id="week-section">
+        <section id="week-section" class="flex flex-col text-center gap-10">
             <!-- 6 total future days -->
             <!-- [0] -->
             <div class="weekFutureDay">
