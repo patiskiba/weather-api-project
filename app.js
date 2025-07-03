@@ -24,6 +24,10 @@ const todayTempUnit = document.getElementById("today-temp-unit");
 const todayShortForecast = document.getElementById("today-short-forecast");
 
 //! Week section DOM
+const futureNames = document.querySelectorAll(".futureDayName");
+const futureIcons = document.querySelectorAll(".futureDayIconImg");
+const futureTempNums = document.querySelectorAll(".futureDayTempNum");
+const futureShortForecasts = document.querySelectorAll(".futureDayShortForecast");
 
 
 //! GET COORDINATES FUNCTION
@@ -136,6 +140,14 @@ async function displayWeatherData() {
   todayTempNum.textContent = todaysForecast.temperature;
   todayTempUnit.textContent = todaysForecast.temperatureUnit;
   todayShortForecast.textContent = todaysForecast.shortForecast;
+
+  for (let i = 0; i < weeksForecast.length; i++) {
+    let futureDayForecast = weeksForecast[i];
+    futureNames[i].textContent = futureDayForecast.name;
+    futureIcons[i].src = futureDayForecast.icon;
+    futureTempNums[i].textContent = futureDayForecast.temperature;
+    futureShortForecasts[i].textContent = futureDayForecast.shortForecast;
+  }
 };
 
 displayCoords();
